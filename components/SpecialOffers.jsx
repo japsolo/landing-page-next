@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 // Assets
 import SpecialOfferImg01 from "../public/images/special-offers/special-offer_01.jpg";
@@ -12,6 +12,15 @@ const SpecialOffers = () => {
       { text: "Couple", isActive: false },
       { text: "Family", isActive: false },
    ]);
+
+   const [products, setProducts] = useState([]);
+
+   useEffect(() => {
+      fetch("https://dummyjson.com/products")
+         .then(response => response.json())
+         .then(data => console.info(data))
+         .catch(error => console.error(error))
+   }, []);
 
    const selectActiveButton = (e) => {
       const activeButtonText = e.target.innerText;
@@ -74,7 +83,7 @@ const SpecialOffers = () => {
 
             <article className="p-5 mb-6 bg-white rounded-5xl lg:w-3/12 lg:mb-0">
                <div className="relative mb-3 special-offer">
-                  <Image src={SpecialOfferImg01} alt="special offer" />
+                  <Image src={SpecialOfferImg02} alt="special offer" />
                </div>
                {/* <span>14 FEB 2022</span> */}
                <span className="inline-block px-3 mr-4 text-xs text-pink-400 bg-pink-200 bg-color rounded-5xl">Relax</span>
@@ -95,7 +104,7 @@ const SpecialOffers = () => {
 
             <article className="p-5 mb-6 bg-white rounded-5xl lg:w-3/12 lg:mb-0">
                <div className="relative mb-3 special-offer">
-                  <Image src={SpecialOfferImg01} alt="special offer" />
+                  <Image src={SpecialOfferImg03} alt="special offer" />
                </div>
                {/* <span>14 FEB 2022</span> */}
                <span className="inline-block px-3 mr-4 text-xs text-pink-400 bg-pink-200 bg-color rounded-5xl">Relax</span>
